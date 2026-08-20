@@ -4,14 +4,19 @@ document.getElementById('contactForm').addEventListener('submit', async function
   const submitBtn = document.getElementById('submitBtn');
   const statusDiv = document.getElementById('status');
 
+  const priority = document.getElementById('priority').value;
+  const userSubject = document.getElementById('subject').value;
+  const userBody = document.getElementById('body').value;
+
+  // Формируем письмо сметкой важности
   const payload = {
     to: document.getElementById('to').value,
-    subject: document.getElementById('subject').value,
-    body: document.getElementById('body').value
+    subject: `[${priority}] ${userSubject}`,
+    body: `Категория важности: ${priority}\n\nТекст сообщения:\n${userBody}`
   };
 
   submitBtn.disabled = true;
-  submitBtn.textContent = 'Отправка...';
+  submitBtn.textContent = 'Анализ и отправка...';
   statusDiv.textContent = '';
   statusDiv.className = 'status-message';
 
@@ -27,11 +32,11 @@ document.getElementById('contactForm').addEventListener('submit', async function
     const result = await response.json();
 
     if (result.status === 'success') {
-      statusDiv.textContent = 'Письмо успешно отправлено!';
+      statusDiv.textContent = 'Успешно классифицировано и отправлено!';
       statusDiv.classList.add('status-success');
       document.getElementById('contactForm').reset();
     } else {
-      throw new Error(result.message || 'Ошибка при отправке');
+      throw new Error(result.message || 'Ошибка обработки');
     }
 
   } catch (error) {
@@ -39,6 +44,6 @@ document.getElementById('contactForm').addEventListener('submit', async function
     statusDiv.classList.add('status-error');
   } finally {
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Отправить';
+    submitBtn.textContent = 'Отправить и Сортировать';
   }
 });
