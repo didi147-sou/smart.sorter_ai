@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Отправка почты через Google Apps Script</title>
+  <title>Smart Email Sorter AI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div class="container">
-    <h2>Связаться с нами</h2>
+    <h2>Smart Email Sorter AI ✉️</h2>
+    <p class="subtitle">Анализ важности и отправка сообщений</p>
+
     <form id="contactForm">
       <div class="form-group">
         <label for="to">Email получателя</label>
@@ -18,21 +20,30 @@
 
       <div class="form-group">
         <label for="subject">Тема письма</label>
-        <input type="text" id="subject" name="subject" required placeholder="Тема сообщения">
+        <input type="text" id="subject" name="subject" required placeholder="Срочный вопрос / Отчет">
       </div>
 
       <div class="form-group">
-        <label for="body">Сообщение</label>
-        <textarea id="body" name="body" rows="4" required placeholder="Введите ваш текст..."></textarea>
+        <label for="priority">Уровень важности (AI Category)</label>
+        <select id="priority" name="priority">
+          <label>Категория</label>
+          <option value="Высокий (High Priority) 🔴">Срочно / Высокая важность 🔴</option>
+          <option value="Средний (Medium Priority) 🟡" selected>Обычное / Средняя важность 🟡</option>
+          <option value="Низкий (Low Priority) 🟢">Низкая важность / Рассылка 🟢</option>
+        </select>
       </div>
 
-      <button type="submit" id="submitBtn">Отправить</button>
+      <div class="form-group">
+        <label for="body">Текст сообщения</label>
+        <textarea id="body" name="body" rows="4" required placeholder="Введите текст сообщения..."></textarea>
+      </div>
+
+      <button type="submit" id="submitBtn">Отправить и Сортировать</button>
     </form>
 
     <div id="status" class="status-message"></div>
   </div>
 
-  <!-- Подключаем конфиг и основной скрипт -->
   <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
