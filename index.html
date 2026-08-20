@@ -3,53 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Email Sorter AI</title>
+  <title>Smart Sorter AI — Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="app-container">
-    <header>
-      <h2>Smart Email Sorter AI 🤖✉️</h2>
-      <p class="subtitle">Автоматический анализ важности сообщений</p>
+  <div class="mobile-wrapper">
+    <!-- Шапка приложения -->
+    <header class="app-header">
+      <div class="header-top">
+        <h2>Smart Sorter AI 📱</h2>
+        <span class="status-online">Online</span>
+      </div>
+      <p class="subtitle">Дашборд автоматической сортировки писем и сообщений</p>
     </header>
 
-    <div class="main-content">
-      <!-- Форма отправки -->
-      <section class="card">
-        <h3>Отправить сообщение</h3>
-        <form id="contactForm">
-          <div class="form-group">
-            <label for="to">Email получателя</label>
-            <input type="email" id="to" name="to" required placeholder="example@gmail.com">
-          </div>
+    <!-- Переключатель категорий важности -->
+    <nav class="filter-tabs">
+      <button class="tab-btn active" onclick="filterEmails('all')">Все</button>
+      <button class="tab-btn priority-high" onclick="filterEmails('high')">1-я важность 🔴</button>
+      <button class="tab-btn priority-medium" onclick="filterEmails('medium')">2-я важность 🟡</button>
+      <button class="tab-btn priority-low" onclick="filterEmails('low')">Низкая 🟢</button>
+    </nav>
 
-          <div class="form-group">
-            <label for="subject">Тема письма</label>
-            <input type="text" id="subject" name="subject" required placeholder="Введите тему...">
-          </div>
+    <!-- Панель симуляции входящего письма -->
+    <section class="card incoming-sim">
+      <h3>Симуляция входящего сообщения (Gmail/WhatsApp)</h3>
+      <div class="form-group">
+        <input type="text" id="sender" placeholder="От кого (например: Turan Admission)">
+      </div>
+      <div class="form-group">
+        <input type="text" id="subject" placeholder="Тема сообщения (например: Scholarship info)">
+      </div>
+      <div class="form-group">
+        <textarea id="body" rows="2" placeholder="Текст письма..."></textarea>
+      </div>
+      <button id="receiveBtn" onclick="processIncomingEmail()">Получить и отсортировать письмо</button>
+    </section>
 
-          <div class="form-group">
-            <label for="body">Текст сообщения</label>
-            <textarea id="body" name="body" rows="4" required placeholder="Напишите текст... Алгоритм сам определит важность."></textarea>
-          </div>
-
-          <button type="submit" id="submitBtn">Анализировать и отправить</button>
-        </form>
-        <div id="status" class="status-message"></div>
-      </section>
-
-      <!-- Панель отсортированных писем -->
-      <section class="card">
-        <h3>Журнал отсортированных писем</h3>
-        <div id="emailList" class="email-list">
-          <p class="empty-text">Отправленные и отсортированные письма появятся здесь...</p>
-        </div>
-      </section>
-    </div>
+    <!-- Список отсортированных писем -->
+    <main class="card dashboard-list">
+      <h3>Входящие сообщения</h3>
+      <div id="emailContainer" class="email-container">
+        <!-- Сюда динамически добавляются отсортированные письма -->
+      </div>
+    </main>
   </div>
 
-  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
