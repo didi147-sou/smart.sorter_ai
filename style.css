@@ -12,68 +12,91 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 20px;
 }
 
-.container {
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+.app-container {
   width: 100%;
-  max-width: 450px;
-  border: 1px solid #334155;
+  max-width: 900px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 h2 {
-  margin-bottom: 5px;
   color: #38bdf8;
-  text-align: center;
+  font-size: 26px;
 }
 
 .subtitle {
-  text-align: center;
   color: #94a3b8;
-  font-size: 13px;
-  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #f1f5f9;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   color: #cbd5e1;
-  font-size: 13px;
+  font-size: 12px;
 }
 
-input, textarea, select {
+input, textarea {
   width: 100%;
-  padding: 10px;
+  padding: 8px 12px;
   background: #0f172a;
   border: 1px solid #334155;
   color: #fff;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus, textarea:focus {
   outline: none;
   border-color: #38bdf8;
 }
 
 button {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   background-color: #0284c7;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
-  transition: 0.2s;
 }
 
 button:hover {
@@ -82,19 +105,62 @@ button:hover {
 
 button:disabled {
   background-color: #475569;
-  cursor: not-allowed;
 }
 
 .status-message {
-  margin-top: 15px;
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 13px;
   text-align: center;
 }
 
-.status-success {
-  color: #4ade80;
+.status-success { color: #4ade80; }
+.status-error { color: #f87171; }
+
+.email-list {
+  max-height: 380px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.status-error {
-  color: #f87171;
+.empty-text {
+  color: #64748b;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 20px;
 }
+
+.email-item {
+  background: #0f172a;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid #94a3b8;
+}
+
+.email-item.high { border-left-color: #ef4444; }
+.email-item.medium { border-left-color: #eab308; }
+.email-item.low { border-left-color: #22c55e; }
+
+.email-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.badge.high { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+.badge.medium { background: rgba(234, 179, 8, 0.2); color: #facc15; }
+.badge.low { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+
+.email-time { font-size: 11px; color: #64748b; }
+.email-to { font-size: 11px; color: #94a3b8; margin-bottom: 4px; }
+.email-subject { font-size: 13px; color: #f1f5f9; margin-bottom: 4px; }
+.email-body { font-size: 12px; color: #94a3b8; white-space: pre-wrap; }
