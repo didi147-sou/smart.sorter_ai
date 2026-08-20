@@ -8,40 +8,45 @@
 </head>
 <body>
 
-  <div class="container">
-    <h2>Smart Email Sorter AI ✉️</h2>
-    <p class="subtitle">Анализ важности и отправка сообщений</p>
+  <div class="app-container">
+    <header>
+      <h2>Smart Email Sorter AI 🤖✉️</h2>
+      <p class="subtitle">Автоматический анализ важности сообщений</p>
+    </header>
 
-    <form id="contactForm">
-      <div class="form-group">
-        <label for="to">Email получателя</label>
-        <input type="email" id="to" name="to" required placeholder="example@gmail.com">
-      </div>
+    <div class="main-content">
+      <!-- Форма отправки -->
+      <section class="card">
+        <h3>Отправить сообщение</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="to">Email получателя</label>
+            <input type="email" id="to" name="to" required placeholder="example@gmail.com">
+          </div>
 
-      <div class="form-group">
-        <label for="subject">Тема письма</label>
-        <input type="text" id="subject" name="subject" required placeholder="Срочный вопрос / Отчет">
-      </div>
+          <div class="form-group">
+            <label for="subject">Тема письма</label>
+            <input type="text" id="subject" name="subject" required placeholder="Введите тему...">
+          </div>
 
-      <div class="form-group">
-        <label for="priority">Уровень важности (AI Category)</label>
-        <select id="priority" name="priority">
-          <label>Категория</label>
-          <option value="Высокий (High Priority) 🔴">Срочно / Высокая важность 🔴</option>
-          <option value="Средний (Medium Priority) 🟡" selected>Обычное / Средняя важность 🟡</option>
-          <option value="Низкий (Low Priority) 🟢">Низкая важность / Рассылка 🟢</option>
-        </select>
-      </div>
+          <div class="form-group">
+            <label for="body">Текст сообщения</label>
+            <textarea id="body" name="body" rows="4" required placeholder="Напишите текст... Алгоритм сам определит важность."></textarea>
+          </div>
 
-      <div class="form-group">
-        <label for="body">Текст сообщения</label>
-        <textarea id="body" name="body" rows="4" required placeholder="Введите текст сообщения..."></textarea>
-      </div>
+          <button type="submit" id="submitBtn">Анализировать и отправить</button>
+        </form>
+        <div id="status" class="status-message"></div>
+      </section>
 
-      <button type="submit" id="submitBtn">Отправить и Сортировать</button>
-    </form>
-
-    <div id="status" class="status-message"></div>
+      <!-- Панель отсортированных писем -->
+      <section class="card">
+        <h3>Журнал отсортированных писем</h3>
+        <div id="emailList" class="email-list">
+          <p class="empty-text">Отправленные и отсортированные письма появятся здесь...</p>
+        </div>
+      </section>
+    </div>
   </div>
 
   <script src="config.js"></script>
